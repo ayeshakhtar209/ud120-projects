@@ -19,7 +19,7 @@ for point in data:
     bonus = point[1]
     plt.scatter(salary, bonus)
 
-# Finding the outliers (hughest salaries & bonuses)
+# Finding the outliers (hughest salaries & bo`nuses)
 for i in data_dict:
     # float() does not include NaN values
     bonus = float(data_dict[i]["bonus"])
