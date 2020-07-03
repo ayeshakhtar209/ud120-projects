@@ -12,21 +12,31 @@
 
 import pickle
 import sys
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+
+
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 
-data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "r") )
+data_dict = pickle.load(open("../final_project/validation_poi.pkl", "rb"))
 
-### first element is our labels, any added elements are predictor
-### features. Keep this the same for the mini-project, but you'll
-### have a different feature list when you do the final project.
+# first element is our labels, any added elements are predictor
+# features. Keep this the same for the mini-project, but you'll
+# have a different feature list when you do the final project.
 features_list = ["poi", "salary"]
-
+sort_keys = '../tools/python2_lesson13_keys.pkl'
 data = featureFormat(data_dict, features_list)
 labels, features = targetFeatureSplit(data)
 
+# Split into a training and testing set
+X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.3, random_state=42)
 
+# it's all yours from here forward!
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
 
-### it's all yours from here forward!  
-
-
+pred = clf.predict(X_test)
+acc = accuracy_score(y_test, pred)
+print(acc)
