@@ -16,7 +16,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 
@@ -26,7 +25,7 @@ data_dict = pickle.load(open("../final_project/validation_poi.pkl", "rb"))
 # features. Keep this the same for the mini-project, but you'll
 # have a different feature list when you do the final project.
 features_list = ["poi", "salary"]
-sort_keys = '../tools/python2_lesson13_keys.pkl'
+
 data = featureFormat(data_dict, features_list)
 labels, features = targetFeatureSplit(data)
 
